@@ -7,7 +7,7 @@
 }
 
 #navigation {
-  border-bottom: dashed 1px;
+  border-bottom: dotted 1px #a1a1a1;
   padding-bottom: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -16,9 +16,17 @@
 }
 
 .nav-link {
+  background-color: #fff;
   border: solid 1px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
+}
+.nav-link:hover {
+  background-color: #3566c1;
+  color: #fff;
 }
 
 input {
@@ -37,4 +45,27 @@ button {
   padding: 0.65rem 1rem;
   cursor: pointer;
   min-height: 40px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.card button {
+  margin-top: auto;
+}
+
+.card {
+  box-sizing: border-box;
+  background-color: #fff;
+  border: solid 1px #e9e9e9;
+  border-bottom: solid 2px #e9e9e9;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  font-size: 0.9rem;
+  padding: 15px;
 }
