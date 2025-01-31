@@ -63,7 +63,7 @@ export const PessoaLista = () => {
       <h2>LISTAR PESSOAS</h2>
       <button onClick={handleAdicionarPessoa} >Adicionar pessoa</button>
 
-      <hr style={{marginBottom: 30, marginTop: 30}} />
+      <div className="divider" />
 
       <h4>TOTAL: {total}</h4>
       <div className="pessoa-lista">
