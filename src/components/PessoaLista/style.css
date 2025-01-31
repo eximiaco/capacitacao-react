@@ -1,0 +1,18 @@
+.pessoa-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pessoa-card {
+  flex: 0 0 calc(25% - 20px);
+}
+
+.pessoa-card h3 {
+  margin: 0;
+  padding-bottom: 12px;
+}
+
+.pessoa-card button {
+  margin-top: 20px;
+}

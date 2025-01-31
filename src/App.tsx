@@ -1,72 +1,18 @@
-import React from 'react'
 import './App.css'
+import { PessoaLista } from './components/PessoaLista'
+import { BrowserRouter, Route, Routes } from 'react-router';
 
-type Props = {
-  nome: string;
-  cidade: string;
-  children?: React.ReactNode
-}
-
-const Pessoa = ({ nome, cidade, children }: Props) => {
-  return (
-    <>
-      <ul>
-        <li><b>Nome</b>: {nome}</li>
-        <li><b>Cidade</b>: {cidade}</li>
-        <li>{children} </li>
-      </ul>
-    </>
-  )
+const ProdutoLista = () => {
+  return <h2>LISTAR PRODUTOS</h2>
 }
 
 function App() {
-  const PESSOAS = [
-    {
-      id: 1,
-      nome: 'Pessoa 1',
-      cidade: 'Porto Alegre'
-    },
-    {
-      id: 2,
-      nome: 'Pessoa 2',
-      cidade: 'Porto Alegre'
-    },
-    {
-      id: 3,
-      nome: 'Pessoa 3',
-      cidade: 'Porto Alegre'
-    },
-  ];
-
-  const handleAdicionarPessoa = () => {
-    const obj = {
-      id: 1,
-      nome: 'Pessoa 1',
-      cidade: 'Porto Alegre'
-    };
-
-    PESSOAS.push(obj);
-  }
-
-  return (
-    <div>
-      <div id="lista-pessoas">
-        <ul>
-          <li><button onClick={handleAdicionarPessoa} >Adicionar pessoa</button></li>
-        </ul>
-
-        {PESSOAS.map((pessoa) => {
-          return <Pessoa 
-            key={pessoa.id} 
-            nome={pessoa.nome} 
-            cidade={pessoa.cidade}
-          >
-            Descrição sobre a pessoa
-          </Pessoa>
-        })}
-      </div>
-    </div>
-  )
+    return <BrowserRouter>
+      <Routes>
+        <Route path="pessoas" element={<PessoaLista />} />
+        <Route path="produtos" element={<ProdutoLista />} />
+      </Routes>
+    </BrowserRouter>
 }
 
 export default App
