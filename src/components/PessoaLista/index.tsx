@@ -1,61 +1,29 @@
-import { useEffect, useState } from "react";
 import { Pessoa } from "../../models/Pessoa";
 import { PessoaCard } from "./PessoaCard";
+import { usePessoaLista } from "./usePessoaLista";
 import './style.css';
+import { ChangeEvent } from "react";
+import { useFiltroPessoa } from "./useFiltroPessoa";
 
 export const PessoaLista = () => {
-  // gerenciamento estado
-  const [pessoas, setPessoas] = useState([
-    {
-      id: 3,
-      nome: 'Pessoa 3',
-      cidade: 'Porto Alegre'
-    },
-    {
-      id: 2,
-      nome: 'Pessoa 2',
-      cidade: 'Porto Alegre'
-    },
-    {
-      id: 1,
-      nome: 'Pessoa 1',
-      cidade: 'Porto Alegre'
-    },
-  ]);
+  const { pessoas, total, isLoading, adicionarPessoa, removerPessoa } = usePessoaLista();
+  const { filtro, pessoasFiltradas, aplicarFiltro } = useFiltroPessoa(pessoas);
 
-  const total = pessoas.length;
-
-  // gerenciar ciclo de vida do componente
-  // ciclo: criação
-  useEffect(() => {
-    // escopo
-  }, [])
-
-  useEffect(() => {
-    // pessoas foi alterada -> executa
-  }, [pessoas])
-
-  // criação
-  useEffect(()=> {
-  }, []);
-
-  
-   // métodos / comportamentos
+  // comportamento / métodos
   const handleAdicionarPessoa = () => {
-    const id = pessoas.length + 1;
-
-    const novaPessoa = {
-      id,
-      nome: `Pessoa ${id}`,
-      cidade: 'Porto Alegre' 
-    };
-
-    setPessoas([novaPessoa, ...pessoas]);
+    adicionarPessoa();
   }
 
   const handleRemoverPessoa = (pessoa: Pessoa) => {
-    const novaLista = pessoas.filter(item => item.id !== pessoa.id);
-    setPessoas(novaLista);
+    removerPessoa(pessoa);
+  }
+
+  const handleFiltro = (event: ChangeEvent<HTMLInputElement>) => {
+    aplicarFiltro(event.target.value);
+  }
+
+  if (isLoading) {
+    return <h4>Carregando...</h4>
   }
 
   return (
@@ -65,16 +33,24 @@ export const PessoaLista = () => {
 
       <div className="divider" />
 
-      <h4>TOTAL: {total}</h4>
-      <div className="pessoa-lista">
-        {pessoas.map((pessoa) => {
-          return <PessoaCard
-            key={pessoa.id}
-            pessoa={pessoa}
-            onRemove={() => handleRemoverPessoa(pessoa)}
-          />
-        })}
+      <div className="filtro-pesquisa">
+        <input value={filtro} onChange={handleFiltro} type="text" placeholder="Filtro pessoa..." />
       </div>
+
+      {pessoasFiltradas.length > 0 && <>
+        <h4>TOTAL: {total}</h4>
+        <div className="pessoa-lista">
+          {pessoasFiltradas.map((pessoa) => {
+            return <PessoaCard
+              key={pessoa.id}
+              pessoa={pessoa}
+              onRemove={() => handleRemoverPessoa(pessoa)}
+            />
+          })}
+        </div>
+      </>}
+
+      {!pessoasFiltradas.length && <h4>Não há pessoas cadastradas para esse filtro</h4>}
     </div>
-  )  
+  )
 }

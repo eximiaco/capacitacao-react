@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import './App.css'
-import { PessoaLista } from './components/PessoaLista'
+import './App.css';
 
-const ProdutoLista = () => {
-  return <h2>LISTAR PRODUTOS</h2>
-}
+import { PessoaLista } from './components/PessoaLista'
+import { ProdutoLista } from './components/ProdutoLista';
 
 function App() {
     const [tab, setTab] = useState<'pessoas'|'produtos'>('pessoas');
@@ -23,9 +21,9 @@ function App() {
           <div className="nav-link" onClick={setProdutos}>Produtos</div>
           <div className="nav-link" onClick={setPessoas}>Pessoas</div>
         </div>
-
+        
         {tab == 'produtos' && <ProdutoLista /> }
-        {tab == 'pessoas' && <PessoaLista /> }
+        {tab == 'pessoas' && <PessoaLista /> } 
       </>
     )
 }
