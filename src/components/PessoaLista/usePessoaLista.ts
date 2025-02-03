@@ -28,7 +28,6 @@ export const usePessoaLista = () => {
     }    
   }
 
-   // métodos / comportamentos
   const adicionarPessoa = () => {
     const id = pessoas.length + 1;
 
