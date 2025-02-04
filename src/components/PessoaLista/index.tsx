@@ -33,7 +33,7 @@ export const PessoaLista = () => {
 
       <div className="divider" />
 
-      <div className="filtro-pesquisa">
+      <div className="filtro-pesquisa" style={{marginBottom: 20}}>
         <input value={filtro} onChange={handleFiltro} type="text" placeholder="Filtro pessoa..." />
       </div>
 
