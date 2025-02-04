@@ -23,7 +23,7 @@ export const PessoaLista = () => {
   }
 
   if (isLoading) {
-    return <h4>Carregando...</h4>
+    return <h4>Carregando pessoas...</h4>
   }
 
   return (

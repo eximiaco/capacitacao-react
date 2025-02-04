@@ -1,0 +1,10 @@
+.produto-lista{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-produto {
+  flex: 0 0 calc(25% - 20px);
+  font-size: 13px;
+}
