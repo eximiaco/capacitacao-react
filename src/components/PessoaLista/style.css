@@ -25,5 +25,6 @@
 .filtro-pesquisa {
   display: flex;
   flex-direction: column;
-  margin-top: 28px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
