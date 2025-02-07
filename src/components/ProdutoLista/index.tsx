@@ -17,7 +17,7 @@ export const ProdutoLista = () => {
 
   return (
     <>
-      <div className="content-top" style={{marginBottom: 20}}>
+      <div className="content-top">
         <h2>LISTAR PRODUTOS</h2>
         <button onClick={handleCriarProduto}>Criar produto</button>
       </div>

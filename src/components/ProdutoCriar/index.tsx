@@ -12,7 +12,7 @@ export const ProdutoCriar = () => {
 
   return (
     <div className="content">
-      <h2>CRIAR PRODUTO</h2>
+      <h1>Criar produto</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="field">
@@ -22,7 +22,7 @@ export const ProdutoCriar = () => {
 
         <div className="field">
           <label>URL Image</label>
-          <input type="text"  {...register('image')}/>
+          <input type="text"  {...register('image')} />
         </div>
 
         <div className="field">
@@ -37,10 +37,13 @@ export const ProdutoCriar = () => {
 
         <div className="field">
           <label>Descrição</label>
-          <textarea {...register('description')}  rows={5} />
+          <textarea {...register('description')} rows={5} />
         </div>
 
-        <button type="submit">Criar produto</button>
+        <div className="form-actions">
+          <button type="submit">Criar produto</button>
+          <button className="secondary">Cancelar</button>
+        </div>
       </form>
     </div>
   )

@@ -1,9 +1,9 @@
 import { Pessoa } from "../../models/Pessoa";
 import { PessoaCard } from "./PessoaCard";
 import { usePessoaLista } from "./usePessoaLista";
-import './style.css';
 import { ChangeEvent } from "react";
 import { useFiltroPessoa } from "./useFiltroPessoa";
+import './style.css';
 
 export const PessoaLista = () => {
   const { pessoas, total, isLoading, adicionarPessoa, removerPessoa } = usePessoaLista();
@@ -28,12 +28,14 @@ export const PessoaLista = () => {
 
   return (
     <div>
-      <h2>LISTAR PESSOAS</h2>
-      <button onClick={handleAdicionarPessoa} >Adicionar pessoa</button>
+      <div className="content-top">
+        <h1>Listar pessoas</h1>
+        <button onClick={handleAdicionarPessoa} >Adicionar pessoa</button>
+      </div>
 
       <div className="divider" />
 
-      <div className="filtro-pesquisa" style={{marginBottom: 20}}>
+      <div className="filtro-pesquisa">
         <input value={filtro} onChange={handleFiltro} type="text" placeholder="Filtro pessoa..." />
       </div>
 
