@@ -29,7 +29,7 @@ h1,h2,h3,h4 {
   cursor: pointer;
   padding: 0.5rem 1rem;
 }
-.nav-link:hover {
+.nav-link:hover, .nav-link.active {
   background-color: #3566c1;
   color: #fff;
 }
