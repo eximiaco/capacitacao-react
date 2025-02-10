@@ -28,16 +28,8 @@ export const usePessoaLista = () => {
     }    
   }
 
-  const adicionarPessoa = () => {
-    const id = pessoas.length + 1;
-
-    const novaPessoa = {
-      id,
-      nome: `Pessoa ${id}`,
-      cidade: 'Porto Alegre' 
-    };
-
-    setPessoas([novaPessoa, ...pessoas]);
+  const adicionarPessoa = (pessoa: Pessoa) => {
+    setPessoas([pessoa, ...pessoas]);
   }
 
   const removerPessoa = (pessoa: Pessoa) => {

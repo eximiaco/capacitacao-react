@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Produto } from "../../models/Produto";
 import { fetchProdutos } from "../../api/produtos.api";
+ 
 
 export const useProdutoLista = () => {
   // gerenciamento estado

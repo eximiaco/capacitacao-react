@@ -1,17 +1,21 @@
 import { Pessoa } from "../../models/Pessoa";
 import { PessoaCard } from "./PessoaCard";
 import { usePessoaLista } from "./usePessoaLista";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { useFiltroPessoa } from "./useFiltroPessoa";
 import './style.css';
+import { PessoaForm } from "./PessoaForm";
+import { Dialog } from "../../components/Dialog";
 
 export const PessoaLista = () => {
   const { pessoas, total, isLoading, adicionarPessoa, removerPessoa } = usePessoaLista();
   const { filtro, pessoasFiltradas, aplicarFiltro } = useFiltroPessoa(pessoas);
+  const [exibeForm, setExibeForm] = useState(false);
 
   // comportamento / métodos
-  const handleAdicionarPessoa = () => {
-    adicionarPessoa();
+  const handleAdicionarPessoa = (pessoa: Pessoa) => {
+    adicionarPessoa(pessoa);
+    setExibeForm(false);
   }
 
   const handleRemoverPessoa = (pessoa: Pessoa) => {
@@ -22,15 +26,23 @@ export const PessoaLista = () => {
     aplicarFiltro(event.target.value);
   }
 
+  const handleExibirFormulario = () => {
+    setExibeForm(!exibeForm);
+  }
+
   if (isLoading) {
     return <h4>Carregando pessoas...</h4>
   }
 
   return (
     <div>
+      <Dialog isOpen={exibeForm}>
+        <PessoaForm onSubmit={handleAdicionarPessoa} onCancel={handleExibirFormulario} />
+      </Dialog>
+
       <div className="content-top">
         <h1>Listar pessoas</h1>
-        <button onClick={handleAdicionarPessoa} >Adicionar pessoa</button>
+        {!exibeForm && <button onClick={handleExibirFormulario} >Adicionar pessoa</button>}
       </div>
 
       <div className="divider" />
