@@ -10,11 +10,7 @@ export const ProdutoCard = ({ produto }: Props) => {
       <img src={produto.image} />
       <p>{produto.description.substring(0, 90)}...</p>
 
-      <div className="actions">
-        <button>Favoritar</button>
-        <button className="danger">Favoritar</button>
-
-      </div>
+      <button>Favoritar</button>
     </div>
   )
 }
