@@ -6,6 +6,7 @@ import { useFiltroPessoa } from "./useFiltroPessoa";
 import './style.css';
 import { PessoaForm } from "./PessoaForm";
 import { Dialog } from "../../components/Dialog";
+import { TotalFavoritos } from "../../components/TotalFavoritos";
 
 export const PessoaLista = () => {
   const { pessoas, total, isLoading, adicionarPessoa, removerPessoa } = usePessoaLista();
@@ -36,6 +37,8 @@ export const PessoaLista = () => {
 
   return (
     <div>
+      <TotalFavoritos />
+      
       <Dialog isOpen={exibeForm}>
         <PessoaForm onSubmit={handleAdicionarPessoa} onCancel={handleExibirFormulario} />
       </Dialog>

@@ -3,12 +3,15 @@ import { BrowserRouter } from 'react-router';
 import { AppRoutes } from './App.routes';
 
 import { Layout } from './components/Layout';
+import { ProdutoProvider } from './providers/ProdutoContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <AppRoutes />
+      <Layout> 
+        <ProdutoProvider>
+          <AppRoutes />
+        </ProdutoProvider>
       </Layout>
     </BrowserRouter>
   )
