@@ -6,6 +6,9 @@ header {
 
 #content {
   padding: 2rem;
+  max-width: 1280px; 
+  width: 100%;
+  margin: auto;
 }
 
 #navigation {

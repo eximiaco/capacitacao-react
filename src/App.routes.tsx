@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router"
-import { PessoaLista } from "./pages/PessoaLista"
+import { PessoaLista } from "./pages/PessoasLista"
 import { ProdutoLista } from "./pages/ProdutoLista"
 import { ProdutoCriar } from "./pages/ProdutoCriar"
 

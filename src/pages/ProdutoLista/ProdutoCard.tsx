@@ -10,8 +10,8 @@ export const ProdutoCard = ({ produto }: Props) => {
   return (
     <>
       <div className="card card-produto">
-        <h4>{produto.title}</h4>
-        <img src={produto.image} />
+        <h3>{produto.title}</h3>
+        <img src={produto.thumbnail} />
         <p>{produto.description.substring(0, 90)}...</p>
 
         <div className="actions">

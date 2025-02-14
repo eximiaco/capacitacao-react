@@ -1,0 +1,8 @@
+.card-favoritado {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-favoritado label {
+  font-weight: bold;
+}

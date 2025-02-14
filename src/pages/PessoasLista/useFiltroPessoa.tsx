@@ -5,7 +5,7 @@ export const useFiltroPessoa = (pessoas: Pessoa[]) => {
   const [filtro, setFiltro ] = useState('');
 
   const pessoasFiltradas = pessoas.filter(pessoa => {
-    return pessoa.nome.toLowerCase().includes(filtro.toLowerCase())
+    return pessoa.firstName.toLowerCase().includes(filtro.toLowerCase())
   });
 
   const aplicarFiltro = (filtro: string) => {

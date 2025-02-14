@@ -20,11 +20,13 @@ export const ProdutoLista = () => {
 
   return (
     <>
-      <TotalFavoritos />
+      <div className="produto-content-top">
+        <h1>Listar produtos</h1>
 
-      <div className="content-top">
-        <h2>LISTAR PRODUTOS</h2>
-        <button onClick={handleCriarProduto}>Criar produto</button>
+        <div className="produto-content-top-info">
+          <TotalFavoritos />
+          <button onClick={handleCriarProduto}>Criar produto</button>
+        </div>
       </div>
 
       <div className="produto-lista">

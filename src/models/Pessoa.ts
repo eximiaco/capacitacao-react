@@ -1,5 +1,7 @@
 export type Pessoa = {
   id: number;
-  nome: string;
-  cidade: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
 }

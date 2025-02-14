@@ -5,5 +5,5 @@ export const fetchPessoas = async () => {
     resolve(true);
   }, 1000));
 
-  return FETCH_PESSOAS_MOCK;
+  return FETCH_PESSOAS_MOCK.users;
 }

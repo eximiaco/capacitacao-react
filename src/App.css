@@ -3,8 +3,11 @@ body {
   padding: 0;
 }
 
+main {
+  box-sizing: border-box;
+}
+
 #root {
-  max-width: 1280px; 
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -12,6 +15,7 @@ body {
 
 h1,h2,h3,h4 {
   margin-top: 0;
+  margin-bottom: 0;
   padding-top: 0;
 }
 
@@ -35,6 +39,7 @@ button {
   padding: 0.65rem 1rem;
   cursor: pointer;
   min-height: 40px;
+  text-transform: uppercase;
 }
 
 button.secondary {

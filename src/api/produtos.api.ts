@@ -6,5 +6,5 @@ export const fetchProdutos = async (): Promise<Produto[]> => {
     resolve(true);
   }, 1000));
 
-  return PRODUTOS_MOCK;
+  return PRODUTOS_MOCK.products;
 }

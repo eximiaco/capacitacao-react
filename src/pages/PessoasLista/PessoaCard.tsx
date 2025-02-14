@@ -15,8 +15,13 @@ export const PessoaCard = ({ pessoa, onRemove }: Props) => {
   return (
     <>
       <div className="card pessoa-card">
-        <h3>{pessoa.nome}</h3>
-        <div><b>Cidade</b>: {pessoa.cidade}</div>
+        <h3>{pessoa.firstName} {pessoa.lastName}</h3>
+        <div className="pessoa-info">
+          <b>Email:</b> {pessoa.email}
+        </div>
+        <div className="pessoa-info">
+          <b>Telefone:</b> {pessoa.phone}
+        </div>
         <button onClick={handleRemover}>Remover</button>
       </div>
     </>
