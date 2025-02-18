@@ -1,6 +1,6 @@
 import FETCH_PESSOAS_MOCK from './mock/fetch_pessoas';
 
-export const fetchPessoas = async () => {
+export const fetchPessoasApi = async () => {
   await new Promise(resolve => setTimeout(() => {
     resolve(true);
   }, 1000));

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Pessoa } from "../../models/Pessoa";
 
-import { fetchPessoas } from "../../api/pessoa.api";
-import { useLoadingContext } from "../../providers/LoadingContext";
+import { fetchPessoasApi } from "../../api/pessoa.api";
+
 
 export const usePessoaLista = () => {
   // gerenciamento estado
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
-  // const { abrir, fechar } = useLoadingContext();
 
   const total = pessoas.length;
 
@@ -18,16 +17,12 @@ export const usePessoaLista = () => {
   
   // métodos / comportamentos da função
   const carregarPessoas = async () => {
-    // abrir();
-
     try {
-      const responseData = await fetchPessoas();
+      const responseData = await fetchPessoasApi();
       setPessoas(responseData);
     } catch(error) {
       console.error(error);
-    } finally {
-      // fechar(); 
-    }    
+    } 
   }
 
   const adicionarPessoa = (pessoa: Pessoa) => {
