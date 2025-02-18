@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Produto } from "../models/Produto";
 import { fetchProdutos } from "../api/produtos.api";
+import axios from "axios";
 
 // 
 // Definição tipos
@@ -12,9 +13,13 @@ type Props = {
 }
 
 const useStore = () => {
+  // estado componente
   const [favoritados, setFavoritados] = useState<Produto[]>([]);
   const [produtos, setProdutos] = useState<Produto[]>([]);
+
+  // estado servidor
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   // gerenciar ciclo de vida do componente
   useEffect(() => {
@@ -29,6 +34,11 @@ const useStore = () => {
       const responseData = await fetchProdutos();
       setProdutos(responseData);
     } catch (error) {
+      if(!axios.isAxiosError(error)) {
+        return;
+      }
+      
+      setError(error.message);
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -65,6 +75,7 @@ const useStore = () => {
     favoritados,
     produtos,
     isLoading,
+    error,
     selecionarProduto,
     temProduto,
     adicionarProduto

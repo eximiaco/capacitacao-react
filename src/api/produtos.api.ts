@@ -1,10 +1,21 @@
 import { Produto } from '../models/Produto';
-import PRODUTOS_MOCK from './mock/fetch_produtos';
+import { httpClient } from '../http';
 
-export const fetchProdutos = async (): Promise<Produto[]> => {
-  await new Promise(resolve => setTimeout(() => {
-    resolve(true);
-  }, 1000));
+type ResponseProduto = {
+  products: Produto[],
+  total: number,
+  skip: number,
+  limit: number
+}
 
-  return PRODUTOS_MOCK.products;
+export const fetchProdutos = async () => {
+  const response = await httpClient.get<ResponseProduto>('products');
+  return response.data.products;
+}
+
+export const fetchProduto = async (produtoId: number) => {
+  const response = await httpClient.get<ResponseProduto>(
+    `https://dummyjson.com/products/${produtoId}`,
+  );
+  return response.data.products
 }

@@ -5,11 +5,11 @@ import { ChangeEvent, useState } from "react";
 import { useFiltroPessoa } from "./useFiltroPessoa";
 import { PessoaForm } from "./PessoaForm";
 import { Dialog } from "../../components/Dialog";
-import { TotalFavoritos } from "../../components/TotalFavoritos";
+
 import './style.css';
 
 export const PessoaLista = () => {
-  const { pessoas, total, isLoading, adicionarPessoa, removerPessoa } = usePessoaLista();
+  const { pessoas, total, adicionarPessoa, removerPessoa } = usePessoaLista();
   const { filtro, pessoasFiltradas, aplicarFiltro } = useFiltroPessoa(pessoas);
   const [exibeForm, setExibeForm] = useState(false);
 
@@ -30,11 +30,7 @@ export const PessoaLista = () => {
   const handleExibirFormulario = () => {
     setExibeForm(!exibeForm);
   }
-
-  if (isLoading) {
-    return <h4>Carregando pessoas...</h4>
-  }
-
+  
   return (
     <div>
       <Dialog isOpen={exibeForm}>

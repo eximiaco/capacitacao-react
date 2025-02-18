@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Pessoa } from "../../models/Pessoa";
 
 import { fetchPessoas } from "../../api/pessoa.api";
+import { useLoadingContext } from "../../providers/LoadingContext";
 
 export const usePessoaLista = () => {
   // gerenciamento estado
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const { abrir, fechar } = useLoadingContext();
+
   const total = pessoas.length;
 
   // gerenciar ciclo de vida do componente
@@ -16,7 +18,7 @@ export const usePessoaLista = () => {
   
   // métodos / comportamentos da função
   const carregarPessoas = async () => {
-    setIsLoading(true);
+    // abrir();
 
     try {
       const responseData = await fetchPessoas();
@@ -24,7 +26,7 @@ export const usePessoaLista = () => {
     } catch(error) {
       console.error(error);
     } finally {
-      setIsLoading(false);  
+      // fechar(); 
     }    
   }
 
@@ -40,7 +42,6 @@ export const usePessoaLista = () => {
   return {
     pessoas,
     total,
-    isLoading,
     adicionarPessoa,
     removerPessoa
   }

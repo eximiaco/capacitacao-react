@@ -4,15 +4,18 @@ import { AppRoutes } from './App.routes';
 
 import { Layout } from './components/Layout';
 import { ProdutoProvider } from './providers/ProdutoContext';
+import { LoadingProvider } from './providers/LoadingContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout> 
-        <ProdutoProvider>
-          <AppRoutes />
-        </ProdutoProvider>
-      </Layout>
+      <LoadingProvider>
+        <Layout>
+          <ProdutoProvider>
+            <AppRoutes />
+          </ProdutoProvider>
+        </Layout>
+      </LoadingProvider>
     </BrowserRouter>
   )
 }

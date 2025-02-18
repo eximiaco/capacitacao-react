@@ -6,7 +6,7 @@ import { TotalFavoritos } from "../../components/TotalFavoritos";
 import { useProdutoContext } from "../../providers/ProdutoContext";
 
 export const ProdutoLista = () => {
-  const { isLoading, produtos } = useProdutoContext();
+  const { isLoading, produtos, error } = useProdutoContext();
 
   const navigate = useNavigate();
 
@@ -16,6 +16,12 @@ export const ProdutoLista = () => {
 
   if (isLoading) {
     return <h4>Carregando produto...</h4>
+  }
+
+  if(error) {
+    return <div className="card">
+      {error}
+    </div>
   }
 
   return (
