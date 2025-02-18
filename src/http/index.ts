@@ -8,4 +8,4 @@ export const httpClient = axios.create({
 httpClient.interceptors.response.use(
   responseSuccess,
   responseError
-);
+);``

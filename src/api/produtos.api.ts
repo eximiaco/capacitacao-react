@@ -9,13 +9,13 @@ type ResponseProduto = {
 }
 
 export const fetchProdutos = async () => {
-  const response = await httpClient.get<ResponseProduto>('products');
+  const response = await httpClient.get<ResponseProduto>('products?select=id,title,price,description,category,thumbnail,images');
   return response.data.products;
 }
 
 export const fetchProduto = async (produtoId: number) => {
   const response = await httpClient.get<ResponseProduto>(
-    `https://dummyjson.com/products/${produtoId}`,
+    `products/${produtoId}?select=id,title,price,description,category,thumbnail,images`,
   );
   return response.data.products
 }
