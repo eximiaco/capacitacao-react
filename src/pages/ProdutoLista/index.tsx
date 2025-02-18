@@ -5,7 +5,7 @@ import "./style.css";
 import { TotalFavoritos } from "../../components/TotalFavoritos";
 import { useProdutoContext } from "../../providers/ProdutoContext";
 
-export const ProdutoLista = () => {
+export const ProdutoListaPage = () => {
   const { isLoading, produtos, error } = useProdutoContext();
 
   const navigate = useNavigate();

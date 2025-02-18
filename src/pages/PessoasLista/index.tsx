@@ -8,7 +8,7 @@ import { Dialog } from "../../components/Dialog";
 
 import './style.css';
 
-export const PessoaLista = () => {
+export const PessoaListaPage = () => {
   const { pessoas, total, adicionarPessoa, removerPessoa } = usePessoaLista();
   const { filtro, pessoasFiltradas, aplicarFiltro } = useFiltroPessoa(pessoas);
   const [exibeForm, setExibeForm] = useState(false);

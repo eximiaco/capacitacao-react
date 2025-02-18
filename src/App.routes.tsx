@@ -1,15 +1,15 @@
 import { Navigate, Route, Routes } from "react-router"
-import { PessoaLista } from "./pages/PessoasLista"
-import { ProdutoLista } from "./pages/ProdutoLista"
-import { ProdutoCriar } from "./pages/ProdutoCriar"
+import { PessoaListaPage } from "./pages/PessoasLista"
+import { ProdutoListaPage } from "./pages/ProdutoLista"
+import { ProdutoCriarPage } from "./pages/ProdutoCriar"
 
 export const AppRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path="pessoas" element={<PessoaLista />} />
-        <Route path="produtos" element={<ProdutoLista />} />
-        <Route path="produtos/criar" element={<ProdutoCriar />} />
+        <Route path="pessoas" element={<PessoaListaPage />} />
+        <Route path="produtos" element={<ProdutoListaPage />} />
+        <Route path="produtos/criar" element={<ProdutoCriarPage />} />
         <Route path="*" element={<Navigate to="pessoas" />} />
       </Routes>
     </>

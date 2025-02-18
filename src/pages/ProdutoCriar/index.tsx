@@ -7,7 +7,7 @@ import './style.css';
 
 type ProdutoForm = Omit<Produto, 'id'>
 
-export const ProdutoCriar = () => {
+export const ProdutoCriarPage = () => {
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset, formState } = useForm<ProdutoForm>();
