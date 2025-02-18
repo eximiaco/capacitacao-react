@@ -8,7 +8,6 @@ type ResponseProduto = {
   limit: number
 }
 
-
 export const fetchProdutosApi = async () => {
   const select = 'id,title,price,description,category,thumbnail,images';
   const response = await httpClient.get<ResponseProduto>(
