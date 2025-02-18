@@ -9,13 +9,19 @@ type ResponseProduto = {
 }
 
 export const fetchProdutos = async () => {
-  const response = await httpClient.get<ResponseProduto>('products?select=id,title,price,description,category,thumbnail,images');
+  const select = 'id,title,price,description,category,thumbnail,images';
+  const response = await httpClient.get<ResponseProduto>(
+    'products', {params: {select}}
+  );
+  
   return response.data.products;
 }
 
 export const fetchProduto = async (produtoId: number) => {
+  const select = 'id,title,price,description,category,thumbnail,images';
   const response = await httpClient.get<ResponseProduto>(
-    `products/${produtoId}?select=id,title,price,description,category,thumbnail,images`,
+    `products/${produtoId}`, {params: {select}}
   );
+  
   return response.data.products
 }

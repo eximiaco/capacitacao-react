@@ -10,7 +10,7 @@ type ProdutoForm = Omit<Produto, 'id'>
 export const ProdutoCriar = () => {
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset } = useForm<ProdutoForm>();
+  const { register, handleSubmit, reset, formState } = useForm<ProdutoForm>();
   const { adicionarProduto } = useProdutoContext();
 
   const onSubmit = (produto: ProdutoForm) => {
@@ -27,7 +27,7 @@ export const ProdutoCriar = () => {
     navigate('/produtos');
   }
 
-  const required = true;
+  const required = '⚠ Campo obrigatório';
 
   return (
     <>
@@ -42,26 +42,31 @@ export const ProdutoCriar = () => {
           <div className="field">
             <label>Título</label>
             <input type="text" {...register('title', { required })} />
+            <small className="field-error">{formState.errors.title?.message}</small>
           </div>
 
           <div className="field">
             <label>URL Image</label>
             <input type="text"  {...register('thumbnail', { required })} />
+            <small className="field-error">{formState.errors.thumbnail?.message}</small>
           </div>
 
           <div className="field">
             <label>Preço</label>
             <input type="text" {...register('price', { required })} />
+            <small className="field-error">{formState.errors.price?.message}</small>
           </div>
 
           <div className="field">
             <label>Categoria</label>
             <input type="text" {...register('category', { required })} />
+            <small className="field-error">{formState.errors.category?.message}</small>
           </div>
 
           <div className="field">
             <label>Descrição</label>
             <textarea {...register('description')} rows={5} />
+            <small className="field-error">{formState.errors.description?.message}</small>
           </div>
 
           <div className="form-actions">
