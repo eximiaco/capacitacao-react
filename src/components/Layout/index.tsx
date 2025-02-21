@@ -1,16 +1,21 @@
+import { Navigate, Outlet } from "react-router";
 import { Content } from "./Content"
 import { Header } from "./Header"
 import "./style.css";
+import { useAuthContext } from "../../providers/AuthContext";
 
-type Props = {
-  children : React.ReactNode
-}
-export const Layout = (props: Props) => {
+export const Layout = () => {
+  const { isLoggedIn } = useAuthContext();
+  
+  if(!isLoggedIn) {
+    return <Navigate to="/auth/login" />
+  }
+
   return (
     <>
       <Header />
       <Content>
-        {props.children}
+        <Outlet />
       </Content>
     </>
   )

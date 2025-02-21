@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Produto } from "../models/Produto";
-import { fetchProdutosApi } from "../api/produtos.api";
+import { criarProdutoApi, fetchProdutosApi } from "../api/produtos.api";
 import axios from "axios";
 
 // 
@@ -45,9 +45,15 @@ const useStore = () => {
     }
   }
 
-  const adicionarProduto = (produto: Produto) => {
-    const novaLista = [produto, ...produtos];
-    setProdutos(novaLista);
+  const adicionarProduto = async (produto: Produto) => {
+    try {
+      await criarProdutoApi(produto);
+
+      const novaLista = [produto, ...produtos];
+      setProdutos(novaLista);
+    } catch(error) {
+      throw error;
+    }
   }
 
   //

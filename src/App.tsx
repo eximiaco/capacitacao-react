@@ -2,20 +2,28 @@ import './App.css';
 import { BrowserRouter } from 'react-router';
 import { AppRoutes } from './App.routes';
 
-import { Layout } from './components/Layout';
 import { ProdutoProvider } from './providers/ProdutoContext';
 import { LoadingProvider } from './providers/LoadingContext';
+
+import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './providers/AuthContext';
+import { AxiosInterceptor } from './providers/AxiosInterceptor';
 
 function App() {
   return (
     <BrowserRouter>
-      <LoadingProvider>
-        <Layout>
+      <AuthProvider>
+        <LoadingProvider>
+
           <ProdutoProvider>
             <AppRoutes />
+            
+            <ToastContainer theme="colored" />
+            <AxiosInterceptor />
           </ProdutoProvider>
-        </Layout>
-      </LoadingProvider>
+
+        </LoadingProvider>
+      </AuthProvider>
     </BrowserRouter>
   )
 }

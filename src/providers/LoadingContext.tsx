@@ -15,18 +15,28 @@ type Props = {
 } 
 export const LoadingProvider = (props: Props) => {
   const [loading, setLoading] = useState(false);
+  const [isReady, setIsReady ] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
     const request = httpClient.interceptors.request.use((request) => {
       setLoading(true);
       return request;
+    }, (error) => {
+      setLoading(false);
+      throw error;
     })
   
     const response = httpClient.interceptors.response.use((response) => {
       setLoading(false);
       return response;
+    }, (error) => {
+      setLoading(false);
+      throw error;
     });
-  
+
+    setIsReady(true);
+
+    // ciclo / destruição
     return () => {
       httpClient.interceptors.request.eject(request);
       httpClient.interceptors.response.eject(response);
@@ -43,7 +53,7 @@ export const LoadingProvider = (props: Props) => {
 
   return (
     <LoadingContext.Provider value={{loading, abrir, fechar}}>
-      {props.children}
+      {isReady && props.children}
 
       <Dialog isOpen={loading}>
           <div style={{textAlign: 'center'}}>Carregando...</div>

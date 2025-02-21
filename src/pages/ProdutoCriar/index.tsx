@@ -4,23 +4,31 @@ import { TotalFavoritos } from "../../components/TotalFavoritos";
 import { useProdutoContext } from "../../providers/ProdutoContext";
 import { useNavigate } from "react-router";
 import './style.css';
+import { toast } from "react-toastify";
 
 type ProdutoForm = Omit<Produto, 'id'>
 
 export const ProdutoCriarPage = () => {
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset, formState } = useForm<ProdutoForm>();
+  const { register, handleSubmit, reset } = useForm<ProdutoForm>();
   const { adicionarProduto } = useProdutoContext();
 
-  const onSubmit = (produto: ProdutoForm) => {
+  const onSubmit = async (produto: ProdutoForm) => {
     const novoProduto: Produto = {
       id: Date.now(),
       ...produto
     }
 
-    adicionarProduto(novoProduto);
-    reset();
+    try {
+      await adicionarProduto(novoProduto);
+      reset();
+      navigate('/produtos');
+      toast.success('Produto adicionado com sucesso');
+    } catch(error) {
+      toast.error('Não foi possível adicionar o produto');
+    }
+    
   }
 
   const onCancel = () => {
@@ -41,7 +49,7 @@ export const ProdutoCriarPage = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="field">
             <label>Título</label>
-            <input type="text" {...register('title', { required })} />
+            <input type="text"  {...register('title', { required })} />
             <small className="field-error">{formState.errors.title?.message}</small>
           </div>
 
@@ -53,7 +61,7 @@ export const ProdutoCriarPage = () => {
 
           <div className="field">
             <label>Preço</label>
-            <input type="text" {...register('price', { required })} />
+            <input  type="text" {...register('price', { required })} /> 
             <small className="field-error">{formState.errors.price?.message}</small>
           </div>
 
@@ -78,3 +86,7 @@ export const ProdutoCriarPage = () => {
     </>
   )
 }
+function watch(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
+

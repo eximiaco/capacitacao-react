@@ -8,6 +8,13 @@ type ResponseProduto = {
   limit: number
 }
 
+
+export const criarProdutoApi = async (produto: Produto) => {
+  return await httpClient.post(
+    'products/add', produto
+  );
+}
+
 export const fetchProdutosApi = async () => {
   const select = 'id,title,price,description,category,thumbnail,images';
   const response = await httpClient.get<ResponseProduto>(

@@ -1,5 +1,5 @@
+import { httpClient } from '../http';
 import { Pessoa } from '../models/Pessoa';
-import FETCH_PESSOAS_MOCK from './mock/fetch_pessoas';
 
 type ResponsePessoa = {
   users: Pessoa[],
@@ -9,9 +9,11 @@ type ResponsePessoa = {
 }
 
 export const fetchPessoasApi = async () => {
-  await new Promise(resolve => setTimeout(() => {
-    resolve(true);
-  }, 1000));
+  const select = 'id,firstName,lastName,email,phone';
 
-  return FETCH_PESSOAS_MOCK.users;
+  const response = await httpClient.get<ResponsePessoa>(
+    'users', {params: {select}}
+  );
+  
+  return response.data.users;
 }
