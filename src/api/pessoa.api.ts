@@ -1,6 +1,6 @@
-import { httpClient } from '../http';
-import { Pessoa } from '../models/Pessoa';
-import { PessoaDetalhe } from '../models/PessoaDetalhe';
+import { httpClient } from '@/http';
+import { Pessoa } from '@/models/Pessoa';
+import { PessoaDetalhe } from '@/models/PessoaDetalhe';
 
 type ResponsePessoas = {
   users: Pessoa[],

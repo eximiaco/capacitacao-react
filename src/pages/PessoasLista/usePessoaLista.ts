@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Pessoa } from "../../models/Pessoa";
+import { Pessoa } from "@/models/Pessoa";
 
-import { consultarPessoasApi } from "../../api/pessoa.api";
+import { consultarPessoasApi } from "@/api/pessoa.api";
 
 
 export const usePessoaLista = () => {

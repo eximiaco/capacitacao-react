@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { loginApi } from "../../api/autenticacao";
-import { useAuthContext } from "../../providers/AuthContext";
+import { loginApi } from "@/api/autenticacao";
+import { useAuthContext } from "@/providers/AuthContext";
 
 export const useLogin = () => {
   const { isLoggedIn, login } = useAuthContext();

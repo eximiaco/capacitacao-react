@@ -1,5 +1,5 @@
-import { Produto } from '../models/Produto';
-import { httpClient } from '../http';
+import { Produto } from '@/models/Produto';
+import { httpClient } from '@/http';
 
 type ResponseProdutos = {
   products: Produto[],

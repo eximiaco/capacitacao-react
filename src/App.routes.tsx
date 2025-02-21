@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router"
-import { PessoaListaPage } from "./pages/PessoasLista"
-import { ProdutoListaPage } from "./pages/ProdutoLista"
-import { ProdutoCriarPage } from "./pages/ProdutoCriar"
-import { LoginPage } from "./pages/Login"
-import { Layout } from "./components/Layout"
-import { ProdutoDetalhePage } from "./pages/ProdutoDetalhe"
-import { PessoaDetalhePage } from "./pages/PessoaDetalhe"
+import { PessoaListaPage } from "@/pages/PessoasLista"
+import { ProdutoListaPage } from "@/pages/ProdutoLista"
+import { ProdutoCriarPage } from "@/pages/ProdutoCriar"
+import { LoginPage } from "@/pages/Login"
+import { Layout } from "@/components/Layout"
+import { ProdutoDetalhePage } from "@/pages/ProdutoDetalhe"
+import { PessoaDetalhePage } from "@/pages/PessoaDetalhe"
 
 export const AppRoutes = () => {
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pessoa } from "../../models/Pessoa";
+import { Pessoa } from "@/models/Pessoa";
 
 export const useFiltroPessoa = (pessoas: Pessoa[]) => {
   const [filtro, setFiltro ] = useState('');

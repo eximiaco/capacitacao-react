@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { consultarPessoaApi } from "../../api/pessoa.api";
+import { consultarPessoaApi } from "@/api/pessoa.api";
 import { useParams } from "react-router";
-import { PessoaDetalhe } from "../../models/PessoaDetalhe";
+import { PessoaDetalhe } from "@/models/PessoaDetalhe";
 
 
 export const usePessoaDetalhe = () => {

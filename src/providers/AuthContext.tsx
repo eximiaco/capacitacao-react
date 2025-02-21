@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { AuthUser } from "../models/AuthUser";
+import { AuthUser } from "@/models/AuthUser";
 
 type AuthContext = {
   user: AuthUser|null;

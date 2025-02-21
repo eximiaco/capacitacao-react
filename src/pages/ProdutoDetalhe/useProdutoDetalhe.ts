@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { consultarProdutoApi } from "../../api/produtos.api";
-import { Produto } from "../../models/Produto";
+import { consultarProdutoApi } from "@/api/produtos.api";
+import { Produto } from "@/models/Produto";
 
 export const useProdutoDetalhe = () => {
   const [loading, setLoading] = useState(false);

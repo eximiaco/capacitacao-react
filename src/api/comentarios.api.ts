@@ -1,5 +1,5 @@
-import { httpClient } from "../http"
-import { Comentario } from "../models/Comentario"
+import { httpClient } from "@/http"
+import { Comentario } from "@/models/Comentario"
 
 type ResponseComentarios = {
   comments: Comentario[],

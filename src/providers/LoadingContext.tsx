@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Dialog } from "../components/Dialog";
-import { httpClient } from "../http";
+import { Dialog } from "@/components/Dialog";
+import { httpClient } from "@/http";
 
 type LoadingContext = {
   loading: boolean,

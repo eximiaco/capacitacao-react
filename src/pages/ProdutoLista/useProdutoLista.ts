@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Produto } from "../../models/Produto";
-import { fetchProdutosApi } from "../../api/produtos.api";
+import { Produto } from "@/models/Produto";
+import { consultarProdutosApi } from "@/api/produtos.api";
  
 
 export const useProdutoLista = () => {
@@ -18,7 +18,7 @@ export const useProdutoLista = () => {
     setIsLoading(true);
 
     try {
-      const responseData = await fetchProdutosApi();
+      const responseData = await consultarProdutosApi();
       setProdutos(responseData);
     } catch(error) {
       console.error(error);

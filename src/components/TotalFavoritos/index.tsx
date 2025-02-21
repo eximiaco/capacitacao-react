@@ -1,4 +1,4 @@
-import { useProdutoContext } from "../../providers/ProdutoContext";
+import { useProdutoContext } from "@/providers/ProdutoContext";
 import './style.css';
 
 export const TotalFavoritos = () => {

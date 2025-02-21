@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Comentario } from "../../models/Comentario";
-import { consultarComentariosApi } from "../../api/comentarios.api";
+import { Comentario } from "@/models/Comentario";
+import { consultarComentariosApi } from "@/api/comentarios.api";
 import { useParams } from "react-router";
 
 export const useProdutoComentarios = () => {

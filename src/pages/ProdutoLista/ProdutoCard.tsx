@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
-import { Produto } from "../../models/Produto"
-import { useProdutoContext } from "../../providers/ProdutoContext"
+import { Produto } from "@/models/Produto"
+import { useProdutoContext } from "@/providers/ProdutoContext"
 
 type Props = {
   produto: Produto

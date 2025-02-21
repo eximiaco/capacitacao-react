@@ -2,8 +2,8 @@ import { ProdutoCard } from "./ProdutoCard";
 import { useNavigate } from "react-router";
 import "./style.css";
 
-import { TotalFavoritos } from "../../components/TotalFavoritos";
-import { useProdutoContext } from "../../providers/ProdutoContext";
+import { TotalFavoritos } from "@/components/TotalFavoritos";
+import { useProdutoContext } from "@/providers/ProdutoContext";
 
 export const ProdutoListaPage = () => {
   const { isLoading, produtos, error } = useProdutoContext();

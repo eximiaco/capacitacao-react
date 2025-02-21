@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router";
 import { Content } from "./Content"
 import { Header } from "./Header"
 import "./style.css";
-import { useAuthContext } from "../../providers/AuthContext";
+import { useAuthContext } from "@/providers/AuthContext";
 
 export const Layout = () => {
   const { isLoggedIn } = useAuthContext();

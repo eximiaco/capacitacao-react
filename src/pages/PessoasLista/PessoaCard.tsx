@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { Pessoa } from "../../models/Pessoa";
+import { Pessoa } from "@/models/Pessoa";
 import './style.css';
 
 type Props = {

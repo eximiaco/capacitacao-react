@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuthContext } from "./AuthContext"
-import { httpClient } from "../http";
+import { httpClient } from "@/http";
 
 export const AxiosInterceptor = () => {
   const { user } = useAuthContext();

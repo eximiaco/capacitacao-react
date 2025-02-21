@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Pessoa } from "../../models/Pessoa";
+import { Pessoa } from "@/models/Pessoa";
 
 type PessoaForm = Omit<Pessoa, 'id'>;
 

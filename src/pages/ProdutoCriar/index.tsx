@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { Produto } from "../../models/Produto";
-import { TotalFavoritos } from "../../components/TotalFavoritos";
-import { useProdutoContext } from "../../providers/ProdutoContext";
+import { Produto } from "@/models/Produto";
+import { TotalFavoritos } from "@/components/TotalFavoritos";
+import { useProdutoContext } from "@/providers/ProdutoContext";
 import { useNavigate } from "react-router";
 import './style.css';
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ type ProdutoForm = Omit<Produto, 'id'>
 export const ProdutoCriarPage = () => {
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset } = useForm<ProdutoForm>();
+  const { formState, register, handleSubmit, reset } = useForm<ProdutoForm>();
   const { adicionarProduto } = useProdutoContext();
 
   const onSubmit = async (produto: ProdutoForm) => {
@@ -85,8 +85,5 @@ export const ProdutoCriarPage = () => {
       </div>
     </>
   )
-}
-function watch(arg0: () => void) {
-  throw new Error("Function not implemented.");
 }
 
