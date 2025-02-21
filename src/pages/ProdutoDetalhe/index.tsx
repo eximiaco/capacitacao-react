@@ -42,12 +42,12 @@ export const ProdutoDetalhePage = () => {
           <textarea rows={6}></textarea>
           <button className="secondary">Comentar</button>
 
-          {comentarios.map(comentario => <>
-            <div className="produto-comentario">
+          {comentarios.map(comentario =>
+            <div className="produto-comentario" key={comentario.id}>
               <h4>{comentario.user.username}</h4>
               <p>{comentario.body}</p>
             </div>
-          </>)}
+          )}
         </div>
       </div>
     </>
