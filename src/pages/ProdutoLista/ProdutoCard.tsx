@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import { Produto } from "../../models/Produto"
 import { useProdutoContext } from "../../providers/ProdutoContext"
 
@@ -6,6 +7,11 @@ type Props = {
 }
 export const ProdutoCard = ({ produto }: Props) => {
   const { selecionarProduto, temProduto } = useProdutoContext();
+  const navigate = useNavigate();
+
+  const handleDetalhe = () => {
+    navigate(`/produtos/${produto.id}`);
+  }
 
   return (
     <>
@@ -15,6 +21,10 @@ export const ProdutoCard = ({ produto }: Props) => {
         <p>{produto.description.substring(0, 90)}...</p>
 
         <div className="actions">
+          <button className="secondary" onClick={handleDetalhe}>
+            Detalhe
+          </button>
+
           {!temProduto(produto) && <button onClick={() => selecionarProduto(produto)}>
             Favoritar
           </button>}

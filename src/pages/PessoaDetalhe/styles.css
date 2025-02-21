@@ -1,0 +1,16 @@
+.pessoa-detalhe-card {
+  flex-direction: row;
+  margin-top: 2rem;
+  gap: 16px;
+  padding: 2rem;
+  align-items: start;
+}
+
+.pessoa-detalhe-bloco {
+  margin-top: 1rem;
+}
+
+.pessoa-detalhe-card img {
+  width: 60px;
+  height: auto;
+}

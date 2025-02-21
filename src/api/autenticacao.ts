@@ -5,7 +5,8 @@ import { AuthUser } from "../models/AuthUser";
 export const loginApi = async (username:string, password: string) => {
   const res = await httpClient.post<AuthUser>('auth/login',{
     username,
-    password
+    password,
+    expiresInMins: 60
   });
 
   return res.data;

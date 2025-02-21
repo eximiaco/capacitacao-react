@@ -2,7 +2,7 @@ import { NavLink } from "react-router"
 import { useAuthContext } from "../../providers/AuthContext"
 
 export const Header = () => {
-  const { logout } = useAuthContext();
+  const { user, logout } = useAuthContext();
 
   const handleSair = () => {
     logout();
@@ -15,8 +15,10 @@ export const Header = () => {
         <NavLink className="nav-link" to="produtos">Produtos</NavLink>
         <NavLink className="nav-link" to="pessoas">Pessoas</NavLink>
         
-
-        <button onClick={handleSair} style={{marginLeft: 'auto'}}>Sair</button>
+        <div className="" style={{marginLeft: 'auto'}}>
+          <b style={{fontSize: 14}}>Olá, {user?.username}</b>
+          <button onClick={handleSair} style={{marginLeft: 12}}>Sair</button>
+        </div>
       </div>
     </header>
   )

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Produto } from "../models/Produto";
-import { criarProdutoApi, fetchProdutosApi } from "../api/produtos.api";
+import { criarProdutoApi, consultarProdutosApi } from "../api/produtos.api";
 import axios from "axios";
 
 // 
@@ -31,7 +31,7 @@ const useStore = () => {
     setIsLoading(true);
 
     try {
-      const responseData = await fetchProdutosApi();
+      const responseData = await consultarProdutosApi();
       setProdutos(responseData);
     } catch (error) {
       if(!axios.isAxiosError(error)) {

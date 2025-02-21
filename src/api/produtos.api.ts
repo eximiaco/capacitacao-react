@@ -1,13 +1,12 @@
 import { Produto } from '../models/Produto';
 import { httpClient } from '../http';
 
-type ResponseProduto = {
+type ResponseProdutos = {
   products: Produto[],
   total: number,
   skip: number,
   limit: number
 }
-
 
 export const criarProdutoApi = async (produto: Produto) => {
   return await httpClient.post(
@@ -15,20 +14,17 @@ export const criarProdutoApi = async (produto: Produto) => {
   );
 }
 
-export const fetchProdutosApi = async () => {
+export const consultarProdutosApi = async () => {
   const select = 'id,title,price,description,category,thumbnail,images';
-  const response = await httpClient.get<ResponseProduto>(
+  const response = await httpClient.get<ResponseProdutos>(
     'products', {params: {select}}
   );
   
   return response.data.products;
 }
 
-export const fetchProdutoApi = async (produtoId: number) => {
-  const select = 'id,title,price,description,category,thumbnail,images';
-  const response = await httpClient.get<ResponseProduto>(
-    `products/${produtoId}`, {params: {select}}
+export const consultarProdutoApi = async (produtoId: string) => {
+  return await httpClient.get<Produto>(`products/${produtoId}`).then(
+    res => res.data
   );
-  
-  return response.data.products
 }

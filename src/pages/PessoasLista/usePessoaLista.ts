@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pessoa } from "../../models/Pessoa";
 
-import { fetchPessoasApi } from "../../api/pessoa.api";
+import { consultarPessoasApi } from "../../api/pessoa.api";
 
 
 export const usePessoaLista = () => {
@@ -18,7 +18,7 @@ export const usePessoaLista = () => {
   // métodos / comportamentos da função
   const carregarPessoas = async () => {
     try {
-      const responseData = await fetchPessoasApi();
+      const responseData = await consultarPessoasApi();
       setPessoas(responseData);
     } catch(error) {
       console.error(error);
