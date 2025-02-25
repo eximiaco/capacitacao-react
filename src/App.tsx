@@ -1,29 +1,14 @@
-import './App.css';
+import './core/theme/App.css';
 import { BrowserRouter } from 'react-router';
 import { AppRoutes } from './App.routes';
-
-import { ProdutoProvider } from './providers/ProdutoContext';
-import { LoadingProvider } from './providers/LoadingContext';
-
-import { ToastContainer } from 'react-toastify';
-import { AuthProvider } from './providers/AuthContext';
-import { AxiosInterceptor } from './providers/AxiosInterceptor';
+import { AppProviders } from './core/providers';
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <LoadingProvider>
-
-          <ProdutoProvider>
-            <AppRoutes />
-            
-            <ToastContainer theme="colored" />
-            <AxiosInterceptor />
-          </ProdutoProvider>
-
-        </LoadingProvider>
-      </AuthProvider>
+      <AppProviders>
+        <AppRoutes />
+      </AppProviders>
     </BrowserRouter>
   )
 }
