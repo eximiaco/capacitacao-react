@@ -7,11 +7,14 @@ import { PessoaForm } from "./PessoaForm";
 import { Dialog } from "@/shared/components/Dialog";
 
 import './style.css';
+import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
 
 export const PessoaListaPage = () => {
-  const { pessoas, total, adicionarPessoa, removerPessoa } = usePessoaLista();
+  const { pessoas, isLoading, total, adicionarPessoa, removerPessoa } = usePessoaLista();
   const { filtro, pessoasFiltradas, aplicarFiltro } = useFiltroPessoa(pessoas);
   const [exibeForm, setExibeForm] = useState(false);
+
+  useLoadingState(isLoading);
 
   // comportamento / métodos
   const handleAdicionarPessoa = (pessoa: Pessoa) => {

@@ -7,6 +7,7 @@ import { consultarPessoasApi } from "@/features/ecommerce/api/pessoa.api";
 export const usePessoaLista = () => {
   // gerenciamento estado
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const total = pessoas.length;
 
@@ -17,12 +18,14 @@ export const usePessoaLista = () => {
   
   // métodos / comportamentos da função
   const carregarPessoas = async () => {
+    setIsLoading(true);
     try {
       const responseData = await consultarPessoasApi();
       setPessoas(responseData);
     } catch(error) {
       console.error(error);
     } 
+    setIsLoading(false);
   }
 
   const adicionarPessoa = (pessoa: Pessoa) => {
@@ -37,6 +40,7 @@ export const usePessoaLista = () => {
   return {
     pessoas,
     total,
+    isLoading,
     adicionarPessoa,
     removerPessoa
   }

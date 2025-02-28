@@ -4,9 +4,12 @@ import styles from "./style.module.css";
 
 import { TotalFavoritos } from "@/features/ecommerce/components/TotalFavoritos";
 import { useProdutoContext } from "@/features/ecommerce/stores/ProdutoContext";
+import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
+
 
 export const ProdutoListaPage = () => {
   const { isLoading, produtos, error } = useProdutoContext();
+  useLoadingState(isLoading);
 
   const navigate = useNavigate();
 

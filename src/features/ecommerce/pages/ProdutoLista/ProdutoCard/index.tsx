@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router"
 import { Produto } from "@/features/ecommerce/models/Produto"
 import { useProdutoContext } from "@/features/ecommerce/stores/ProdutoContext"
-import styles from './styles.module.css';
-import classNames from "classnames";
+
+import { Button, Stack } from "@mui/material";
+
+import * as S from './styles';
 
 type Props = {
   produto: Produto
@@ -17,25 +19,34 @@ export const ProdutoCard = ({ produto }: Props) => {
 
   return (
     <>
-      <div className={classNames("card", styles.cardProduto)}>
-        <h3>{produto.title}</h3>
-        <img src={produto.thumbnail} />
-        <p>{produto.description.substring(0, 90)}...</p>
+      <S.ProdutoCard>
+        <S.ProdutoImg
+          component="img"
+          image={produto.thumbnail}
+        />
 
-        <div className="actions">
-          <button className="secondary" onClick={handleDetalhe}>
-            Detalhe
-          </button>
+        <Stack gap={1}>
+          <h3>{produto.title}</h3>
 
-          {!temProduto(produto) && <button onClick={() => selecionarProduto(produto)}>
-            Favoritar
-          </button>}
+          <S.ProdutoDescription>{produto.description.substring(0, 90)}...</S.ProdutoDescription>
 
-          {temProduto(produto) && <button className="danger" onClick={() => selecionarProduto(produto)}>
-            Remover
-          </button>}
-        </div>
-      </div>
+          <Stack gap={1}>
+            <Button variant="outlined" onClick={handleDetalhe}>
+              Detalhe
+            </Button>
+
+            {!temProduto(produto) && <Button onClick={() => selecionarProduto(produto)}>
+              Favoritar
+            </Button>}
+
+            {temProduto(produto) && <Button onClick={() => selecionarProduto(produto)}>
+              Remover
+            </Button>}
+          </Stack>
+        </Stack>
+
+      </S.ProdutoCard>
+
     </>
   )
 }

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { useProdutoDetalhe } from "./useProdutoDetalhe"
 import './styles.css';
 import { useProdutoComentarios } from "./useProdutoComentarios";
+import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
 
 export const ProdutoDetalhePage = () => {
   const { produto, loading: loadingProdutos } = useProdutoDetalhe();
@@ -11,6 +12,7 @@ export const ProdutoDetalhePage = () => {
   const totalComentarios = comentarios.length;
 
   const navigate = useNavigate();
+  useLoadingState(loading)
 
   const handleVoltar = () => {
     navigate('/produtos');
