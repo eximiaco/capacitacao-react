@@ -6,8 +6,9 @@ import { useFiltroPessoa } from "./useFiltroPessoa";
 import { PessoaForm } from "./PessoaForm";
 import { Dialog } from "@/shared/components/Dialog";
 
-import './style.css';
+// import './style.css';
 import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
+import { Button, Divider, Grid2 as Grid, Stack } from "@mui/material";
 
 export const PessoaListaPage = () => {
   const { pessoas, isLoading, total, adicionarPessoa, removerPessoa } = usePessoaLista();
@@ -33,35 +34,40 @@ export const PessoaListaPage = () => {
   const handleExibirFormulario = () => {
     setExibeForm(!exibeForm);
   }
-  
+
   return (
     <div>
       <Dialog isOpen={exibeForm}>
         <PessoaForm onSubmit={handleAdicionarPessoa} onCancel={handleExibirFormulario} />
       </Dialog>
 
-      <div className="pessoa-content-top">
+      <Stack direction="row" alignItems="center">
         <h1>Listar pessoas</h1>
-        {!exibeForm && <button onClick={handleExibirFormulario} >Adicionar pessoa</button>}
-      </div>
 
-      <div className="divider" />
+        {!exibeForm &&
+          <Button
+            onClick={handleExibirFormulario}
+            sx={{ marginLeft: 'auto' }}>
+            Adicionar pessoa
+          </Button>
+        }
+      </Stack>
 
-      <div className="filtro-pesquisa">
+      <Stack marginTop={3} marginBottom={3}>
         <input value={filtro} onChange={handleFiltro} type="text" placeholder="Filtro pessoa..." />
-      </div>
+      </Stack>
 
       {pessoasFiltradas.length > 0 && <>
         <h4>TOTAL: {total}</h4>
-        <div className="pessoa-lista">
+        <Grid spacing={2} marginTop={3} container>
           {pessoasFiltradas.map((pessoa) => {
-            return <PessoaCard
-              key={pessoa.id}
+            return <Grid key={pessoa.id} size={[12, 6, 3]}><PessoaCard
+
               pessoa={pessoa}
               onRemove={() => handleRemoverPessoa(pessoa)}
-            />
+            /></Grid>
           })}
-        </div>
+        </Grid>
       </>}
 
       {!pessoasFiltradas.length && <h4>Não há pessoas cadastradas para esse filtro</h4>}

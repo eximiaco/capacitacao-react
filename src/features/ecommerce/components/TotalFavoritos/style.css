@@ -1,6 +1,7 @@
 .card-favoritado {
   display: flex;
   flex-direction: row;
+  padding: 10px;
 }
 
 .card-favoritado label {

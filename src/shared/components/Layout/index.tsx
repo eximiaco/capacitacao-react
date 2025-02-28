@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 import { Content } from "./Content"
 import { Header } from "./Header"
-import "./style.css";
+
 import { useAuthContext } from "@/core/providers/AuthContext";
 
 export const Layout = () => {

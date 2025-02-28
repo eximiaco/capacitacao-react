@@ -1,11 +1,10 @@
 import { ProdutoCard } from "./ProdutoCard";
 import { useNavigate } from "react-router";
-import styles from "./style.module.css";
 
 import { TotalFavoritos } from "@/features/ecommerce/components/TotalFavoritos";
 import { useProdutoContext } from "@/features/ecommerce/stores/ProdutoContext";
 import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
-
+import { Grid2 as Grid, Stack } from "@mui/material";
 
 export const ProdutoListaPage = () => {
   const { isLoading, produtos, error } = useProdutoContext();
@@ -17,11 +16,7 @@ export const ProdutoListaPage = () => {
     navigate('/produtos/criar');
   }
 
-  if (isLoading) {
-    return <h4>Carregando produto...</h4>
-  }
-
-  if(error) {
+  if (error) {
     return <div className="card">
       {error}
     </div>
@@ -29,20 +24,24 @@ export const ProdutoListaPage = () => {
 
   return (
     <>
-      <div className={styles["produto-content-top"]}>
+      <Stack direction={["column","column", "row"]} gap={2} marginBottom={5}>
         <h1>Listar produtos</h1>
 
-        <div className={styles["produto-content-top-info"]}>
+        <Stack marginLeft="auto" alignItems={["center"]} direction="row" gap={2}>
           <TotalFavoritos />
           <button onClick={handleCriarProduto}>Criar produto</button>
-        </div>
-      </div>
+        </Stack>
+      </Stack>
 
-      <div className={styles["produto-lista"]}>
+      <Grid container spacing={2}>
         {produtos.map(produto => {
-          return <ProdutoCard key={produto.id} produto={produto} />
+          return (
+          <Grid key={produto.id} size={[12,6,3]}>
+            <ProdutoCard produto={produto} />
+          </Grid>
+          )
         })}
-      </div>
+      </Grid>
     </>
 
   )

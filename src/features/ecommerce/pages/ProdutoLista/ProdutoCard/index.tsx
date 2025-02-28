@@ -25,12 +25,12 @@ export const ProdutoCard = ({ produto }: Props) => {
           image={produto.thumbnail}
         />
 
-        <Stack gap={1}>
+        <Stack gap={1} padding={2} marginTop="auto">
           <h3>{produto.title}</h3>
 
           <S.ProdutoDescription>{produto.description.substring(0, 90)}...</S.ProdutoDescription>
 
-          <Stack gap={1}>
+          <Stack gap={1} marginTop="auto">
             <Button variant="outlined" onClick={handleDetalhe}>
               Detalhe
             </Button>
@@ -39,7 +39,7 @@ export const ProdutoCard = ({ produto }: Props) => {
               Favoritar
             </Button>}
 
-            {temProduto(produto) && <Button onClick={() => selecionarProduto(produto)}>
+            {temProduto(produto) && <Button color="error" onClick={() => selecionarProduto(produto)}>
               Remover
             </Button>}
           </Stack>
