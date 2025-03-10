@@ -1,24 +1,24 @@
 import { useForm } from "react-hook-form";
-import { Pessoa } from "@/features/usuarios/models/Pessoa";
+import { Usuario } from "@/features/usuarios/models/Usuario";
 
-type PessoaForm = Omit<Pessoa, 'id'>;
+type UsuarioForm = Omit<Usuario, 'id'>;
 
 type Props = {
-  onSubmit: (pessoa: Pessoa) => void,
+  onSubmit: (usuario: Usuario) => void,
   onCancel: () => void
 }
-export const PessoaForm = (props: Props) => {
-  const { register, handleSubmit, reset, formState } = useForm<PessoaForm>();
+export const UsuarioForm = (props: Props) => {
+  const { register, handleSubmit, reset, formState } = useForm<UsuarioForm>();
 
-  const onSubmit = (pessoa: PessoaForm) => {
+  const onSubmit = (usuario: UsuarioForm) => {
     if (!props.onSubmit) return;
 
-    const novaPessoa: Pessoa = {
+    const novoUsuario: Usuario = {
       id: Date.now(),
-      ...pessoa
+      ...usuario
     }
 
-    props.onSubmit(novaPessoa);
+    props.onSubmit(novoUsuario);
     reset();
   }
 
@@ -30,7 +30,7 @@ export const PessoaForm = (props: Props) => {
 
   return (
     <>
-      <h1 style={{marginBottom: '1rem'}}>Criar pessoa</h1>
+      <h1 style={{marginBottom: '1rem'}}>Criar usuário</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="field">
           <label>Nome</label>

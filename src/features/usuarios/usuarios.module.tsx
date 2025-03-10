@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router"
-import { PessoaListaPage } from "./pages/PessoasLista"
-import { PessoaDetalhePage } from "./pages/PessoaDetalhe"
+import { UsuarioListaPage } from "./pages/UsuarioLista"
+import { UsuarioDetalhePage } from "./pages/UsuarioDetalhe"
 
 export const UsuariosModule = () => {
   return (
     <Routes>
-      <Route path="" element={<PessoaListaPage />} />
-      <Route path=":pessoaId" element={<PessoaDetalhePage />} />
+      <Route path="" element={<UsuarioListaPage />} />
+      <Route path=":usuarioId" element={<UsuarioDetalhePage />} />
     </Routes>
   )
 }

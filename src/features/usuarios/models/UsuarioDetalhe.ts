@@ -39,7 +39,7 @@ type Crypto = {
   network: string;
 };
 
-export type PessoaDetalhe = {
+export type UsuarioDetalhe = {
   id: number;
   firstName: string;
   lastName: string;

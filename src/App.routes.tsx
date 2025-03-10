@@ -10,7 +10,7 @@ export const AppRoutes = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="produtos/*" element={<EcommerceModule />} />
-          <Route path="pessoas/*" element={<UsuariosModule />} />
+          <Route path="usuarios/*" element={<UsuariosModule />} />
         </Route>
 
         <Route path="auth/*" element={<AutenticacaoModule  />} />

@@ -15,7 +15,7 @@ export const Header = () => {
         <Stack direction="row" gap={2}>
           <h2 id="logo">APP TESTE</h2>
           <S.Link to="produtos">Produtos</S.Link>
-          <S.Link to="pessoas">Pessoas</S.Link>
+          <S.Link to="usuarios">Usuários</S.Link>
         </Stack>
 
 
