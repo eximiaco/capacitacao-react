@@ -14,10 +14,12 @@ const AUTH_KEY = '@AUTH';
 
 export const AuthProvider = (props: { children: React.ReactNode }) => {
   const [user, setUser ] = useState<AuthUser|null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   // sincroniza com o cache na inicialização
   useEffect(() => {
     getUserAuth();
+    setIsReady(true);
   }, []);
 
   const login = (authUser: AuthUser) => {
@@ -50,7 +52,7 @@ export const AuthProvider = (props: { children: React.ReactNode }) => {
       login, 
       logout 
       }}>
-      {props.children}
+      {isReady && props.children}
     </AuthContext.Provider>
   )
 }

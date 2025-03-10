@@ -3,6 +3,7 @@ import { ProdutoListaPage } from "./pages/ProdutoLista"
 import { ProdutoCriarPage } from "./pages/ProdutoCriar"
 import { ProdutoDetalhePage } from "./pages/ProdutoDetalhe"
 import { ProdutoProvider } from "@/features/ecommerce/stores/ProdutoContext"
+import { Navigate } from "react-router"
 
 export const EcommerceModule = () => {
   return (
@@ -11,6 +12,7 @@ export const EcommerceModule = () => {
         <Route path="" element={<ProdutoListaPage />} />
         <Route path="criar" element={<ProdutoCriarPage />} />
         <Route path=":produtoId" element={<ProdutoDetalhePage />} />
+        <Route path="*" element={<Navigate to="/produtos" />} />
       </Routes>
     </ProdutoProvider>
   )

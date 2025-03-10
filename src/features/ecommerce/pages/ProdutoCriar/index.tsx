@@ -6,34 +6,23 @@ import { useNavigate } from "react-router";
 import './style.css';
 import { toast } from "react-toastify";
 import { TextField } from "@mui/material";
-import { z } from "zod";
+
 import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
-
-const FormSchema = z.object({
-  title: z.string().min(1, "⚠ Campo obrigatório"),
-  thumbnail: z.string().url(),
-  price: z.string().min(1),
-  category: z.string().min(1),
-  description: z.string().min(1),
-});
-
-type FormSchema = z.infer<typeof FormSchema>
+import { FormProduto, FormProdutoShema } from "./form.schema";
 
 export const ProdutoCriarPage = () => {
   const navigate = useNavigate();
 
-  const { formState, control, register, handleSubmit, reset } = useForm<FormSchema>({
-    resolver: zodResolver(FormSchema)
+  const { formState, control, handleSubmit, reset } = useForm<FormProduto>({
+    resolver: zodResolver(FormProdutoShema)
   });
   const { adicionarProduto } = useProdutoContext();
 
-  const onSubmit = async (produto: FormSchema) => {
+  const onSubmit = async (produto: FormProduto) => {
     const novoProduto: Produto = {
       id: Date.now(),
       ...produto
     }
-
-    console.log('prodito', produto);
 
     try {
       await adicionarProduto(novoProduto);
@@ -49,8 +38,6 @@ export const ProdutoCriarPage = () => {
   const onCancel = () => {
     navigate('/produtos');
   }
-
-  const required = '⚠ Campo obrigatório';
 
   return (
     <>
@@ -78,27 +65,65 @@ export const ProdutoCriarPage = () => {
           </div>
 
           <div className="field">
-            <label>URL Image</label>
-            <input type="text"  {...register('thumbnail', { required })} />
-            <small className="field-error">{formState.errors.thumbnail?.message}</small>
+            <label>URL imagem</label>
+            <Controller
+              name="thumbnail"
+              defaultValue=""
+              control={control}
+              render={({ field }) =>
+                <TextField
+                  error={!!formState.errors.thumbnail}
+                  helperText={formState.errors.thumbnail?.message}
+                  {...field}
+                />}
+            />
           </div>
 
           <div className="field">
             <label>Preço</label>
-            <input type="text" {...register('price', { required })} />
-            <small className="field-error">{formState.errors.price?.message}</small>
+            <Controller
+              name="price"
+              defaultValue=""
+              control={control}
+              render={({ field }) =>
+                <TextField
+                  error={!!formState.errors.price}
+                  helperText={formState.errors.price?.message}
+                  {...field}
+                />}
+            />
           </div>
 
           <div className="field">
             <label>Categoria</label>
-            <input type="text" {...register('category', { required })} />
-            <small className="field-error">{formState.errors.category?.message}</small>
+            <Controller
+              name="category"
+              defaultValue=""
+              control={control}
+              render={({ field }) =>
+                <TextField
+                  error={!!formState.errors.category}
+                  helperText={formState.errors.category?.message}
+                  {...field}
+                />}
+            />
           </div>
 
           <div className="field">
             <label>Descrição</label>
-            <textarea {...register('description')} rows={5} />
-            <small className="field-error">{formState.errors.description?.message}</small>
+            <Controller
+              name="description"
+              defaultValue=""
+              control={control}
+              render={({ field }) =>
+                <TextField
+                  multiline
+                  rows={5}
+                  error={!!formState.errors.description}
+                  helperText={formState.errors.description?.message}
+                  {...field}
+                />}
+            />
           </div>
 
           <div className="form-actions">
