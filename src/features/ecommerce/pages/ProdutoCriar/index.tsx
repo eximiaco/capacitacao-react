@@ -1,38 +1,26 @@
-import { Controller, useForm } from "react-hook-form";
-import { Produto } from "@/features/ecommerce/models/Produto";
+import { Controller } from "react-hook-form";
 import { TotalFavoritos } from "@/features/ecommerce/components/TotalFavoritos";
-import { useProdutoContext } from "@/features/ecommerce/stores/ProdutoContext";
 import { useNavigate } from "react-router";
-import './style.css';
 import { toast } from "react-toastify";
-import { TextField } from "@mui/material";
-
-import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
-import { FormProduto, FormProdutoShema } from "./form.schema";
+import { Stack, TextField } from "@mui/material";
+import { useProdutoCriar } from "./useProdutCriar";
+import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
+import { FormProduto } from "./form.schema";
 
 export const ProdutoCriarPage = () => {
   const navigate = useNavigate();
+  const { control, formState, loading, handleSubmit, onSubmit } = useProdutoCriar();
 
-  const { formState, control, handleSubmit, reset } = useForm<FormProduto>({
-    resolver: zodResolver(FormProdutoShema)
-  });
-  const { adicionarProduto } = useProdutoContext();
+  useLoadingState(loading);
 
-  const onSubmit = async (produto: FormProduto) => {
-    const novoProduto: Produto = {
-      id: Date.now(),
-      ...produto
-    }
-
+  const onSubmitHandler = async (produto: FormProduto) => {
     try {
-      await adicionarProduto(novoProduto);
-      reset();
+      await onSubmit(produto);
+      toast.success('Produto criado com sucesso2');
       navigate('/produtos');
-      toast.success('Produto adicionado com sucesso');
     } catch (error) {
-      toast.error('Não foi possível adicionar o produto');
+      toast.error('Erro ao criar produto');
     }
-
   }
 
   const onCancel = () => {
@@ -41,14 +29,14 @@ export const ProdutoCriarPage = () => {
 
   return (
     <>
-      <div className="criar-produto-top">
+      <Stack direction="row" justifyContent="space-between">
         <h1>Criar produto</h1>
         <TotalFavoritos />
-      </div>
+      </Stack>
 
       <div className="content" style={{ marginTop: 28 }}>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
           <div className="field">
             <label>Título</label>
             <Controller
