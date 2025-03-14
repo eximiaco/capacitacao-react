@@ -7,15 +7,14 @@ import { UsuarioForm } from "./UsuarioForm";
 import { Dialog } from "@/shared/components/Dialog";
 
 import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
-import { Button, Grid2 as Grid, Stack } from "@mui/material";
+import { Button, Grid2 as Grid, Stack } from "@mui/material"; 
 
 export const UsuarioListaPage = () => {
   const { usuarios, isLoading, total, adicionarUsuario, removerUsuario } = useUsuarioLista();
   const { filtro, usuariosFiltrados, aplicarFiltro } = useFiltroUsuario(usuarios);
   const [exibeForm, setExibeForm] = useState(false);
 
-  useLoadingState(isLoading);
-
+  useLoadingState(isLoading); 
   // comportamento / métodos
   const handleAdicionarUsuario = (usuario: Usuario) => {
     adicionarUsuario(usuario);

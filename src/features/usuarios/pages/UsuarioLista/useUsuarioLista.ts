@@ -6,14 +6,13 @@ export const useUsuarioLista = () => {
   // gerenciamento estado
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const total = usuarios.length;
 
   // gerenciar ciclo de vida do componente
   useEffect(() => {
     carregarUsuarios();
   }, [])
-  
+
   // métodos / comportamentos da função
   const carregarUsuarios = async () => {
     setIsLoading(true);

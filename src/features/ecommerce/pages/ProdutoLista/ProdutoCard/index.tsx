@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router"
 import { Produto } from "@/features/ecommerce/models/Produto"
-import { useProdutoContext } from "@/features/ecommerce/stores/ProdutoContext"
 
 import { Button, Stack } from "@mui/material";
 
 import * as S from './styles';
+import { useProdutoStore } from "@/features/ecommerce/stores/produtos.store";
 
 type Props = {
   produto: Produto
 }
 export const ProdutoCard = ({ produto }: Props) => {
-  const { selecionarProduto, temProduto } = useProdutoContext();
+  // const { selecionarProduto, temProduto } = useProdutoContext();
+  const isFavoritado = useProdutoStore(state => state.temFavoritado(produto));
+  const favoritarProduto = useProdutoStore(state => state.favoritarProduto);
+
   const navigate = useNavigate();
 
   const handleDetalhe = () => {
@@ -35,11 +38,11 @@ export const ProdutoCard = ({ produto }: Props) => {
               Detalhe
             </Button>
 
-            {!temProduto(produto) && <Button onClick={() => selecionarProduto(produto)}>
+            {!isFavoritado && <Button onClick={() => favoritarProduto(produto)}>
               Favoritar
             </Button>}
 
-            {temProduto(produto) && <Button color="error" onClick={() => selecionarProduto(produto)}>
+            {isFavoritado && <Button color="error" onClick={() => favoritarProduto(produto)}>
               Remover
             </Button>}
           </Stack>
