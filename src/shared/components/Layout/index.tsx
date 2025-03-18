@@ -1,11 +1,10 @@
 import { Navigate, Outlet } from "react-router";
 import { Content } from "./Content"
 import { Header } from "./Header"
-
-import { useAuthContext } from "@/core/providers/AuthContext";
+import { useAuthStore } from "@/core/store/auth.store";
 
 export const Layout = () => {
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn } = useAuthStore();
   
   if(!isLoggedIn) {
     return <Navigate to="/auth/login" />

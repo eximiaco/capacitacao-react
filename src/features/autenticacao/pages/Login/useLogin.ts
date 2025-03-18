@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { loginApi } from "@/features/autenticacao/api/autenticacao";
-import { useAuthContext } from "@/core/providers/AuthContext";
+import { useAuthStore } from "@/core/store/auth.store";
 
 export const useLogin = () => {
-  const { isLoggedIn, login } = useAuthContext();
+  const { isLoggedIn, login } = useAuthStore();
   const [loading, setLoading] = useState(false);
 
   const autenticar = async (username: string, password: string) => {

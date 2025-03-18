@@ -1,9 +1,9 @@
-import { useAuthContext } from "@/core/providers/AuthContext"
 import { Box, Stack } from "@mui/material";
 import * as S from './styles';
+import { useAuthStore } from "@/core/store/auth.store";
 
 export const Header = () => {
-  const { user, logout } = useAuthContext();
+  const { user, logout } = useAuthStore();
 
   const handleSair = () => {
     logout();

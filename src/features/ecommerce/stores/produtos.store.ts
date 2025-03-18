@@ -1,9 +1,11 @@
 import { create } from "zustand";
 import { Produto } from "../models/Produto";
+import { consultarProdutosApi } from "../api/produtos.api";
 
 type State = {
   produtos: Produto[],
   favoritados: Produto[],
+  isLoading: boolean
 }
 
 type Actions = {
@@ -11,11 +13,13 @@ type Actions = {
   setProdutos: (produto: Produto[]) => void,
   temFavoritado: (produto: Produto) => boolean,
   removerFavoritado: (produto: Produto) => void,
+  carregarProduto: () => void
 }
 
 export const useProdutoStore = create<State & Actions>((set, get) => ({
   produtos: [],
   favoritados: [],
+  isLoading: false,
 
 
   temFavoritado: (produto: Produto) => {
@@ -43,5 +47,11 @@ export const useProdutoStore = create<State & Actions>((set, get) => ({
     set(state => ({
       favoritados: [produto, ...state.favoritados]
     }))
+  },
+
+  carregarProduto: async () => {
+      set({isLoading: true});
+      const produtos = await consultarProdutosApi();
+      set({produtos, isLoading: false})
   }
 }));

@@ -1,20 +1,24 @@
 import { Usuario } from "@/features/usuarios/models/Usuario";
 import { UsuarioCard } from "./UsuarioCard";
 import { useUsuarioLista } from "./useUsuarioLista";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, lazy, Suspense, useState } from "react";
 import { useFiltroUsuario } from "./useFiltroUsuario";
-import { UsuarioForm } from "./UsuarioForm";
+
 import { Dialog } from "@/shared/components/Dialog";
 
+const UsuarioForm = lazy(() => import("./UsuarioForm").then(
+  m => ({ default: m.UsuarioForm }))
+)
+
 import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
-import { Button, Grid2 as Grid, Stack } from "@mui/material"; 
+import { Button, Grid2 as Grid, Stack } from "@mui/material";
 
 export const UsuarioListaPage = () => {
   const { usuarios, isLoading, total, adicionarUsuario, removerUsuario } = useUsuarioLista();
   const { filtro, usuariosFiltrados, aplicarFiltro } = useFiltroUsuario(usuarios);
   const [exibeForm, setExibeForm] = useState(false);
 
-  useLoadingState(isLoading); 
+  useLoadingState(isLoading);
   // comportamento / métodos
   const handleAdicionarUsuario = (usuario: Usuario) => {
     adicionarUsuario(usuario);
@@ -36,7 +40,9 @@ export const UsuarioListaPage = () => {
   return (
     <div>
       <Dialog isOpen={exibeForm}>
-        <UsuarioForm onSubmit={handleAdicionarUsuario} onCancel={handleExibirFormulario} />
+        <Suspense fallback="Carregando formulário...">
+          <UsuarioForm onSubmit={handleAdicionarUsuario} onCancel={handleExibirFormulario} />
+        </Suspense>
       </Dialog>
 
       <Stack direction="row" alignItems="center">

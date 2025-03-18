@@ -1,15 +1,36 @@
 import { Navigate, Route, Routes } from "react-router"
 import { Layout } from "@/shared/components/Layout"
-import { AutenticacaoModule } from "./features/autenticacao/autenticacao.module"
-import { EcommerceModule } from "./features/ecommerce/ecommerce.module"
-import { UsuariosModule } from "./features/usuarios/usuarios.module"
+import { lazy, Suspense } from "react"
+
+const AutenticacaoModule = lazy(
+  () => import("./features/autenticacao/autenticacao.module").then(m=> ({
+    default: m.AutenticacaoModule
+  }))
+)
+
+const EcommerceModule = lazy(
+  () => import("./features/ecommerce/ecommerce.module").then(m=> ({
+    default: m.EcommerceModule
+  }))
+)
+
+const UsuariosModule = lazy(
+  () => import("./features/usuarios/usuarios.module").then(m=> ({
+    default: m.UsuariosModule
+  }))
+)
 
 export const AppRoutes = () => {
+
   return (
     <>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="produtos/*" element={<EcommerceModule />} />
+          <Route path="produtos/*" element={
+            <Suspense fallback="Carrengando ecommerce...">
+              <EcommerceModule />
+            </Suspense>
+          } />
           <Route path="usuarios/*" element={<UsuariosModule />} />
         </Route>
 

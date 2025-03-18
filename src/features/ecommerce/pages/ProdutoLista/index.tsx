@@ -5,17 +5,24 @@ import { TotalFavoritos } from "@/features/ecommerce/components/TotalFavoritos";
 // import { useProdutoContext } from "@/features/ecommerce/stores/ProdutoContext";
 import { useLoadingState } from "@/core/providers/LoadingContext/useLoadingState";
 import { Grid2 as Grid, Stack } from "@mui/material";
-import { useProdutoLista } from "./useProdutoLista";
+// import { useProdutoLista } from "./useProdutoLista";
+import { useConsultarProdutos } from "../../api/produtos.api";
 
 export const ProdutoListaPage = () => {
   // const { isLoading, produtos, error } = useProdutoContext();
-  const { isLoading, produtos } = useProdutoLista();
+  // const { isLoading, produtos } = useProdutoLista();
+
+  const { data: produtos, isLoading } = useConsultarProdutos();
 
   useLoadingState(isLoading);
   const navigate = useNavigate();
 
   const handleCriarProduto = () => {
     navigate('/produtos/criar');
+  }
+
+  if(!produtos) {
+    return null;
   }
 
   return (

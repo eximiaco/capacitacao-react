@@ -1,5 +1,6 @@
 import { Produto } from '@/features/ecommerce/models/Produto';
 import { httpClient } from '@/core/http';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 type ResponseProdutos = {
   products: Produto[],
@@ -21,6 +22,13 @@ export const consultarProdutosApi = async () => {
   );
   
   return response.data.products;
+}
+
+export const useConsultarProdutos = () => {
+  return useQuery({
+    queryKey: ['produtos'],
+    queryFn: consultarProdutosApi,
+  });
 }
 
 export const consultarProdutoApi = async (produtoId: string) => {

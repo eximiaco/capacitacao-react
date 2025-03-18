@@ -1,9 +1,25 @@
 import { Route, Routes } from "react-router"
-import { ProdutoListaPage } from "./pages/ProdutoLista"
-import { ProdutoCriarPage } from "./pages/ProdutoCriar"
-import { ProdutoDetalhePage } from "./pages/ProdutoDetalhe"
 import { ProdutoProvider } from "@/features/ecommerce/stores/ProdutoContext"
 import { Navigate } from "react-router"
+import { lazy } from "react"
+
+const ProdutoListaPage = lazy(
+  () => import("./pages/ProdutoLista").then(m=> ({
+    default: m.ProdutoListaPage
+  }))
+)
+
+const ProdutoDetalhePage = lazy(
+  () => import("./pages/ProdutoDetalhe").then(m=> ({
+    default: m.ProdutoDetalhePage
+  }))
+)
+
+const ProdutoCriarPage = lazy(
+  () => import("./pages/ProdutoCriar").then(m=> ({
+    default: m.ProdutoCriarPage
+  }))
+)
 
 export const EcommerceModule = () => {
   return (

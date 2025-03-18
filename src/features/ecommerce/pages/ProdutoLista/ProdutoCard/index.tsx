@@ -10,7 +10,6 @@ type Props = {
   produto: Produto
 }
 export const ProdutoCard = ({ produto }: Props) => {
-  // const { selecionarProduto, temProduto } = useProdutoContext();
   const isFavoritado = useProdutoStore(state => state.temFavoritado(produto));
   const favoritarProduto = useProdutoStore(state => state.favoritarProduto);
 
